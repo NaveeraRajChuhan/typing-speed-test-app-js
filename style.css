@@ -429,6 +429,12 @@ body::before {
     animation: slideInRight 0.3s ease-out;
 }
 
+
+.end{
+    font-family: 'Playfair Display', serif;
+    font-size: 2px;
+}
+
 @keyframes slideInRight {
     from {
         opacity: 0;
