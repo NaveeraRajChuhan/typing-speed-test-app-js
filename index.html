@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Typing Speed Test | Test Your Typing Skills</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-bg"></div>
+    </div>
+
+    <div class="container py-4 py-md-5">
+        <!-- Header Section -->
+        <div class="text-center mb-4 mb-md-5 fade-in">
+            <h1 class="display-3 fw-bold text-white mb-2">
+                <i class="fas fa-keyboard me-3 text-warning"></i>
+                Typing Speed Test
+            </h1>
+            <p class="lead text-white-50">Test your typing speed and accuracy</p>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="row g-3 mb-4 mb-md-5 fade-in-up">
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="stat-label">WPM</div>
+                    <div class="stat-value" id="wpm">0</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-label">Accuracy</div>
+                    <div class="stat-value" id="accuracy">100</div>
+                    <div class="stat-unit">%</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="stat-label">Correct</div>
+                    <div class="stat-value" id="correct">0</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="stat-label">Wrong</div>
+                    <div class="stat-value" id="wrong">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timer and Progress Section -->
+        <div class="row mb-4 fade-in-up">
+            <div class="col-12">
+                <div class="timer-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="timer-label">
+                            <i class="fas fa-hourglass-half me-2"></i>
+                            Time Remaining
+                        </div>
+                        <div class="time-selector">
+                            <select id="timeSelect" class="form-select form-select-sm">
+                                <option value="15">15 sec</option>
+                                <option value="30" selected>30 sec</option>
+                                <option value="60">60 sec</option>
+                                <option value="120">120 sec</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="timer-display" id="timer">30</div>
+                    <div class="progress mt-3">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                             id="timerProgress" 
+                             role="progressbar" 
+                             style="width: 100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Section -->
+        <div class="row mb-4 fade-in-up">
+            <div class="col-12">
+                <div class="test-card">
+                    <!-- Quote Display -->
+                    <div class="quote-display" id="quoteDisplay">
+                        Click "Start Test" to begin...
+                    </div>
+                    
+                    <!-- Text Input Area -->
+                    <textarea class="type-input" 
+                              id="typeInput" 
+                              placeholder="Start typing here..." 
+                              disabled></textarea>
+                    
+                    <!-- Control Buttons -->
+                    <div class="button-group">
+                        <button class="btn btn-primary btn-lg" id="startBtn">
+                            <i class="fas fa-play me-2"></i>Start Test
+                        </button>
+                        <button class="btn btn-secondary btn-lg" id="resetBtn" disabled>
+                            <i class="fas fa-redo-alt me-2"></i>Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="row fade-in-up">
+            <div class="col-12">
+                <div class="results-card" id="resultsCard" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="mb-0">
+                            <i class="fas fa-chart-line me-2"></i>
+                            Test Results
+                        </h3>
+                        <button class="btn-close-white btn-close" id="closeResults"></button>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="result-item">
+                                <div class="result-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <div class="result-label">Net WPM</div>
+                                <div class="result-value" id="resultWPM">0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="result-item">
+                                <div class="result-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <div class="result-label">Accuracy</div>
+                                <div class="result-value" id="resultAccuracy">0%</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="result-item">
+                                <div class="result-icon">
+                                    <i class="fas fa-chart-simple"></i>
+                                </div>
+                                <div class="result-label">Raw WPM</div>
+                                <div class="result-value" id="resultRawWPM">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="performance-message mt-3" id="performanceMsg"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Section -->
+        <div class="row mt-4 fade-in-up">
+            <div class="col-12">
+                <div class="history-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="mb-0">
+                            <i class="fas fa-history me-2"></i>
+                            Test History
+                        </h4>
+                        <button class="btn btn-sm btn-outline-danger" id="clearHistory">
+                            <i class="fas fa-trash me-1"></i>Clear
+                        </button>
+                    </div>
+                    <div id="historyList" class="history-list">
+                        <div class="text-center text-muted py-3">
+                            <i class="fas fa-info-circle me-2"></i>
+                            No tests taken yet
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
